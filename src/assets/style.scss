@@ -1,0 +1,295 @@
+:root {
+  --primary-color-h: 265;
+  --primary-color-s: 100%;
+  --primary-color-l: 47%;
+
+  --secondary-color-h: 180;
+  --secondary-color-s: 99%;
+  --secondary-color-l: 27%;
+
+  --contrastThreshold: 60%;
+
+  --lightnessTransform: 15%;
+  --mediumnessTransform: 17%;
+  --darknessTransform: 19%;
+
+  --primary-color-light-l: calc(
+    var(--primary-color-l) + var(--lightnessTransform)
+  );
+  --primary-color-medium-l: calc(
+    var(--primary-color-l) + var(--mediumnessTransform)
+  );
+  --primary-color-dark-l: calc(
+    var(--primary-color-l) + var(--darknessTransform)
+  );
+
+  --secondary-color-light-l: calc(
+    var(--secondary-color-l) + var(--lightnessTransform)
+  );
+  --secondary-color-medium-l: calc(
+    var(--secondary-color-l) + var(--mediumnessTransform)
+  );
+  --secondary-color-dark-l: calc(
+    var(--secondary-color-l) + var(--darknessTransform)
+  );
+
+  --color-primary-dark: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    var(--primary-color-dark-l)
+  );
+  --color-secondary-dark: hsl(
+    var(--secondary-color-h),
+    var(--secondary-color-s),
+    var(--secondary-color-dark-l)
+  );
+  --color-primary-medium: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    var(--primary-color-medium-l)
+  );
+  --color-secondary-medium: hsl(
+    var(--secondary-color-h),
+    var(--secondary-color-s),
+    var(--secondary-color-medium-l)
+  );
+  --color-primary-light: hsl(
+    var(--primary-color-h),
+    var(--primary-color-s),
+    var(--primary-color-light-l)
+  );
+  --color-secondary-light: hsl(
+    var(--secondary-color-h),
+    var(--secondary-color-s),
+    var(--secondary-color-light-l)
+  );
+
+  /*  Calculations Based on Hue  */
+  --color-primary-complement: hsl(
+    calc(var(--primary-color-h) + 180),
+    var(--primary-color-s),
+    var(--primary-color-light-l)
+  );
+  --color-primary-complement-1: hsl(
+    calc(var(--primary-color-h) + 120),
+    var(--primary-color-s),
+    var(--primary-color-light-l)
+  );
+  --color-primary-complement-2: hsl(
+    calc(var(--primary-color-h) - 120),
+    var(--primary-color-s),
+    var(--primary-color-light-l)
+  );
+  --color-secondary-complement: hsl(
+    calc(var(--secondary-color-h) + 180),
+    var(--secondary-color-s),
+    var(--secondary-color-light-l)
+  );
+  --color-secondary-complement-1: hsl(
+    calc(var(--secondary-color-h) + 120),
+    var(--secondary-color-s),
+    var(--secondary-color-light-l)
+  );
+  --color-secondary-complement-2: hsl(
+    calc(var(--secondary-color-h) - 120),
+    var(--secondary-color-s),
+    var(--secondary-color-light-l)
+  );
+}
+
+////////////////////////////////////////////////////////////////
+
+.primary-light {
+  background-color: var(--color-primary-light);
+
+  --switch: calc((var(--primary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.primary-medium {
+  background-color: var(--color-primary-medium);
+  --switch: calc(
+    (var(--primary-color-light-l) - var(--contrastThreshold)) * -100
+  );
+  color: hsl(0, 0%, var(--switch));
+}
+
+.primary-dark {
+  background-color: var(--color-primary-dark);
+  --switch: calc(
+    (var(--primary-color-dark-l) - var(--contrastThreshold)) * -100
+  );
+  color: hsl(0, 0%, var(--switch));
+}
+
+.primary-complement {
+  background-color: var(--color-primary-complement);
+  --switch: calc((var(--primary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.primary-complement-1 {
+  background-color: var(--color-primary-complement-1);
+  --switch: calc((var(--primary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.primary-complement-2 {
+  background-color: var(--color-primary-complement-2);
+  --switch: calc((var(--primary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.secondary-light {
+  background-color: var(--color-secondary-light);
+  --switch: calc((var(--secondary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.secondary-medium {
+  background-color: var(--color-secondary-medium);
+  --switch: calc((var(--secondary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.secondary-dark {
+  background-color: var(--color-secondary-dark);
+  --switch: calc((var(--secondary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.secondary-complement {
+  background-color: var(--color-secondary-complement);
+  --switch: calc((var(--secondary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.secondary-complement-1 {
+  background-color: var(--color-secondary-complement-1);
+  --switch: calc((var(--secondary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+
+.secondary-complement-2 {
+  background-color: var(--color-secondary-complement-2);
+  --switch: calc((var(--secondary-color-l) - var(--contrastThreshold)) * -100);
+  color: hsl(0, 0%, var(--switch));
+}
+////////////////////////////////////////////////////////////////
+
+.color-palette {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  &-title {
+    margin-bottom: 1rem;
+    font-size: 3em;
+    color: rgb(129, 122, 122);
+  }
+  .box-containers {
+    display: flex;
+    flex-direction: column;
+    .box-container {
+      display: flex;
+      .box {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.5rem;
+        border-radius: 10px;
+        text-align: center;
+        padding: 0 0.25rem;
+      }
+    }
+  }
+  .progress {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    progress {
+      width: 510px;
+      margin: 0 1rem;
+      height: 2rem;
+    }
+    input {
+      padding: 5px 20px;
+      border-radius: 20px;
+      border: 0.5px solid rgba(129, 122, 122, 0.623);
+      cursor: pointer;
+      background-color: rgba(129, 122, 122, 0.103);
+      &:hover {
+        background-color: rgba(129, 122, 122, 0.623);
+      }
+    }
+  }
+  .color-picker {
+    display: flex;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    border-color: #bbb;
+    border-style: dashed;
+
+    &-input {
+      width: 100px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="color"] {
+      appearance: none;
+      border: none;
+      padding: 0;
+      vertical-align: middle;
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: transparent;
+      &::-webkit-color-swatch {
+        border-radius: 50%;
+        border: 2px solid;
+      }
+    }
+  }
+}
+
+.tooltip {
+  position: absolute;
+  top: 70px;
+  left: 30px;
+  background: #373737;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: appear 1s ease;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
