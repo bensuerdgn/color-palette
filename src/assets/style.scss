@@ -307,9 +307,44 @@
 
 .theme {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: baseline;
   margin-top: 2rem;
+  .color-picker2 {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+
+    color: var(--text-color);
+    &-input {
+      width: 100px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="color"] {
+      appearance: none;
+      border: none;
+      padding: 0;
+      vertical-align: middle;
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: transparent;
+      &::-webkit-color-swatch {
+        border-radius: 50%;
+        border: 5px solid var(--text-color);
+      }
+    }
+  }
+  .dark-theme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   h3 {
     margin-bottom: 0.5rem;
     color: var(--text-color);
@@ -343,6 +378,7 @@
     left: 0;
     height: 40px;
     width: 40px;
+    border-radius: 0.5rem;
     background-color: #eee;
     border: 1px solid rgb(180, 180, 180);
   }

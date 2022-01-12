@@ -117,13 +117,25 @@
       </div>
     </div>
     <div class="theme">
-      <h3>Show Dark Theme</h3>
+      <div class="dark-theme">
+        <h3>Show Dark Theme</h3>
 
-      <label class="container">
-        <input type="checkbox" :checked="checked"  @click="showDarkTheme" ref="clickedCheckbox"/>
+        <label class="container">
+          <input
+            type="checkbox"
+            :checked="checked"
+            @click="showDarkTheme"
+            ref="clickedCheckbox"
+          />
 
-        <span class="checkmark"></span>
-      </label>
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="color-picker2">
+        <h3>Change Theme Color</h3>
+
+        <input type="color" v-model="themeColorPicker" />
+      </div>
     </div>
   </div>
 </template>
@@ -145,7 +157,16 @@ export default {
       l_value: 0,
       theme: "",
       checked: null,
+      themeColorPicker: "",
     };
+  },
+  watch: {
+    themeColorPicker: function (val) {
+      var root = document.documentElement;
+      root.style.setProperty("--background-color", val);
+      root.style.setProperty("--text-color", "white");
+      root.style.setProperty("--title-color", "white");
+    },
   },
 
   methods: {
@@ -274,7 +295,7 @@ export default {
             }
           }
         }
-        console.log(_this.h_value, _this.s_value, _this.l_value);
+        //console.log(_this.h_value, _this.s_value, _this.l_value);
         this.hslToHex(this.h_value, _this.s_value, _this.l_value, inputType);
       });
     },
@@ -356,7 +377,7 @@ export default {
     document.documentElement.setAttribute("data-theme", localTheme);
     if (localTheme == "darkMode") {
       this.$refs.clickedCheckbox.click();
-      this.checked="checked";
+      this.checked = "checked";
     }
 
     this.hex = { primary: [], secondary: [] };
