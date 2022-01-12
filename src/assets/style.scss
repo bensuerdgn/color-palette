@@ -1,4 +1,7 @@
 :root {
+  --background-color: #ffff;
+  --text-color: black;
+  --title-color: rgb(129, 122, 122);
   --primary-color-h: 265;
   --primary-color-s: 100%;
   --primary-color-l: 47%;
@@ -96,6 +99,11 @@
     var(--secondary-color-light-l)
   );
 }
+[data-theme="darkMode"] {
+  --background-color: #424242;
+  --text-color: white;
+  --title-color: white;
+}
 
 ////////////////////////////////////////////////////////////////
 
@@ -178,6 +186,7 @@
 ////////////////////////////////////////////////////////////////
 
 .color-palette {
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -187,7 +196,7 @@
   &-title {
     margin-bottom: 1rem;
     font-size: 3em;
-    color: rgb(129, 122, 122);
+    color: var(--title-color);
   }
   .box-containers {
     display: flex;
@@ -206,6 +215,7 @@
         border-radius: 10px;
         text-align: center;
         padding: 0 0.25rem;
+        animation: bounce-in-top 2s alternate;
       }
     }
   }
@@ -224,6 +234,7 @@
       border: 0.5px solid rgba(129, 122, 122, 0.623);
       cursor: pointer;
       background-color: rgba(129, 122, 122, 0.103);
+      color: var(--text-color);
       &:hover {
         background-color: rgba(129, 122, 122, 0.623);
       }
@@ -235,7 +246,7 @@
     padding: 1rem 2rem;
     border-color: #bbb;
     border-style: dashed;
-
+    color: var(--text-color);
     &-input {
       width: 100px;
       text-align: center;
@@ -291,5 +302,171 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+.theme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: #eee;
+    border: 1px solid rgb(180, 180, 180);
+  }
+
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196f3;
+    border-radius: 0.5rem;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 14px;
+    top: 5px;
+    width: 10px;
+    height: 20px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes bounce-in-top {
+  0% {
+    -webkit-transform: translateY(-500px);
+    transform: translateY(-500px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    -webkit-transform: translateY(-65px);
+    transform: translateY(-65px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  72% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  81% {
+    -webkit-transform: translateY(-28px);
+    transform: translateY(-28px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  90% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+.box-container-primary {
+  animation: roll-in-blurred-left 1s cubic-bezier(0.23, 1, 0.32, 1) alternate;
+}
+
+@keyframes roll-in-blurred-left {
+  0% {
+    transform: translateX(-1000px) rotate(-720deg);
+    filter: blur(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) rotate(0deg);
+    transform: translateX(0) rotate(0deg);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+.box-container-secondary {
+  animation: roll-in-blurred-right 1s cubic-bezier(0.23, 1, 0.32, 1) alternate;
+}
+@keyframes roll-in-blurred-right {
+  0% {
+    transform: translateX(1000px) rotate(720deg);
+    filter: blur(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    filter: blur(0);
+    opacity: 1;
   }
 }

@@ -25,5 +25,6 @@ export default {
 }
 body {
   height: 100vh;
+  overflow: hidden;
 }
 </style>

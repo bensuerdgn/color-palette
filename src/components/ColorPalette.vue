@@ -2,7 +2,7 @@
   <div class="color-palette">
     <h1 class="color-palette-title">Color Palette 🎨</h1>
     <div class="box-containers">
-      <div class="box-container">
+      <div class="box-container box-container-primary">
         <div
           class="box primary-dark"
           id="primary-dark"
@@ -46,7 +46,7 @@
           {{ this.hex.primary[5] }}
         </div>
       </div>
-      <div class="box-container">
+      <div class="box-container box-container-secondary">
         <div
           class="box secondary-dark"
           id="secondary-dark"
@@ -116,6 +116,15 @@
         <label for="secondary-color-input">Base Color</label>
       </div>
     </div>
+    <div class="theme">
+      <h3>Show Dark Theme</h3>
+
+      <label class="container">
+        <input type="checkbox" :checked="checked"  @click="showDarkTheme" ref="clickedCheckbox"/>
+
+        <span class="checkmark"></span>
+      </label>
+    </div>
   </div>
 </template>
 
@@ -134,6 +143,8 @@ export default {
       h_value: 0,
       s_value: 0,
       l_value: 0,
+      theme: "",
+      checked: null,
     };
   },
 
@@ -185,11 +196,6 @@ export default {
       /////////////////////////////////////////////
 
       var style = getComputedStyle(document.body);
-      //var regex = /\d+ \+ \d+|\d+(.\d)?/gm;
-      // var regex =
-      //   /\d+(.\d)? (\+|\-) \d+(.\d)?|\d+(.\d)?|\d+(.\d)? |(\+|\-)  \d+(.\d)?/gm;
-      // var regex =
-      //   /\d+(.\d)? \D \d+(.\d)?|\d+(.\d)?|\d+(.\d)? |\D\s\s\d+(.\d)?/gm;
       var regex =
         /\d+(.\d)? [\\+\\-] \d+(.\d)?|\d+(.\d)?|\d+(.\d)? |[\\+\\-]\s+[\\-]?\d+(.\d)?/gm;
       var boxes = [
@@ -204,7 +210,7 @@ export default {
       boxes.forEach((element) => {
         var hsl = style.getPropertyValue(element, "hsl");
         var regexResult = [...hsl.matchAll(regex)];
-        console.log(hsl);
+        //console.log(hsl);
         // if (inputType == "primary") {
         //   this.hex.primary.push(hsl);
         // } else {
@@ -339,8 +345,20 @@ export default {
         }
       }
     },
+    showDarkTheme() {
+      this.theme = this.theme == "darkMode" ? "" : "darkMode"; //toggles theme value
+      document.documentElement.setAttribute("data-theme", this.theme); // sets the data-theme attribute
+      localStorage.setItem("theme", this.theme); // stores theme value on local storage
+    },
   },
   mounted() {
+    let localTheme = localStorage.getItem("theme"); //gets stored theme value if any
+    document.documentElement.setAttribute("data-theme", localTheme);
+    if (localTheme == "darkMode") {
+      this.$refs.clickedCheckbox.click();
+      this.checked="checked";
+    }
+
     this.hex = { primary: [], secondary: [] };
 
     this.setTheme(this.primaryColor, "primary");
